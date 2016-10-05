@@ -1,6 +1,3 @@
-import greeter = require('./util');
-import $ = require('jquery');
+import angular = require('angular');
 
-$(() => {
-    $(document.body).html(greeter("World"));
-});
+let libraryApp = angular.module('libraryApp');
