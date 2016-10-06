@@ -1,6 +1,5 @@
 var webpack = require('webpack');
 
-
 module.exports = {
   entry: './app/app.ts',
   output: {
@@ -11,11 +10,11 @@ module.exports = {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    //new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
     loaders: [
-      { test: /\.ts$/, loader: 'ts-loader' }
+      { test: /\.ts(x?)$/, loader: 'ts-loader' }
     ]
   }
 };
