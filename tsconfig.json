@@ -1,10 +1,21 @@
 {
   "compilerOptions": {
-    //"module": "commonjs",
+    "module": "commonjs",
     "target": "es5",
-    "sourceMap": true
+    "sourceMap": true,
+    /*"noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,*/
+    //"outDir": "./built",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "angular"
+    ]
   },
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "include": ["app/**/*.ts"]
 }

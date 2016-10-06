@@ -1,9 +1,15 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-  entry: './app/app.ts',
+  entry: [
+    './app/app.ts',
+    'webpack-dev-server/client?http://localhost:8080'
+  ],
   output: {
-    filename: 'assets/bundle.js'
+    path: path.resolve(__dirname, "build"),
+    publicPath: 'assets',
+    filename: 'bundle.js'
   },
   devtool: 'source-map',
   resolve: {
@@ -14,7 +20,11 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.ts(x?)$/, loader: 'ts-loader' }
+      { test: /\.ts$/, loader: 'ts-loader' }
     ]
+  },
+  watch: true,
+  devServer: {
+    contentBase: './app'
   }
 };
