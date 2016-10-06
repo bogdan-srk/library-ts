@@ -1,6 +1,8 @@
 import * as angular from 'angular';
+
 angular.module('app',[]);
-// console.log('asdasd');
+
+console.log('aaaa');
 
 
 

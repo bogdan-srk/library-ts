@@ -7,8 +7,7 @@ var loaders = require('./loaders');
 
 module.exports = {
   entry: [
-    './app/index.ts',
-    'webpack-dev-server/client?http://localhost:8080'
+    path.resolve(__dirname, '../app/index.ts')
   ],
   output: {
     path: path.resolve(__dirname, "../dist"),
