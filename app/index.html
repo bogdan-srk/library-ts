@@ -5,8 +5,10 @@
     <title>LibraryApp</title>
 </head>
 <body>
-<div>
-
+<div ng-controller="booksController as vm">
+    <div ng-repeat="book in vm.books">
+        <p>{{book.title}}</p>
+    </div>
 </div>
 </body>
 </html>
