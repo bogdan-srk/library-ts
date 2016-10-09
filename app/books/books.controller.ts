@@ -1,11 +1,11 @@
 export class BooksController {
 
-    static $inject = ['booksModel'];
-    booksModel = {};
-    books = [];
+    static $inject = ['booksService'];
+    private booksService = {};
+    private books = [];
 
     constructor (booksModel){
-        this.booksModel = booksModel;
+        this.booksService = booksModel;
         this.books = booksModel.all()
     }
 }

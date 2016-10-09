@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>LibraryApp</title>
+    <base href="/">
 </head>
 <body>
-<div ng-controller="booksController as vm">
-    <div ng-repeat="book in vm.books">
-        <p>{{book.title}}</p>
-    </div>
-</div>
+<!--<div ng-controller="booksController as vm">-->
+    <!--<div ng-repeat="book in vm.books">-->
+        <!--<p>{{book.title}}</p>-->
+    <!--</div>-->
+<!--</div>-->
+<div ng-view=""></div>
 </body>
 </html>
