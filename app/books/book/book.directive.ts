@@ -2,12 +2,14 @@ import {BookController} from "./book.controller";
 
 export function BookDirective() {
     return {
+        restrict: 'E',
         scope: {
             bookId: '@'
         },
         controller: ['$scope', 'booksService', BookController],
         controllerAs: 'vm',
-        template: `<ul>
+        template: `
+                   <ul>
                      <li>{{vm.book.title}}     </li>
                      <li>{{vm.book.author}}    </li>
                      <li>{{vm.book.pageCount}} </li>

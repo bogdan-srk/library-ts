@@ -9,6 +9,5 @@ export class BooksController {
     constructor (booksService){
         this.booksService = booksService;
         this.books = booksService.all();
-        console.log(this.books);
     }
 }

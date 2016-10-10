@@ -5,12 +5,12 @@ export function BooksDirective() {
         scope: {},
         controllerAs: 'vm',
         controller: BooksController,
-        template: `<div ng-repeat="book in vm.books">
+        template: `
+                   <div ng-repeat="book in vm.books">
                      <book book-id="{{book._id}}"></book>
                      <a href="#/books/{{book._id}}">Watch more...</a>
                    </div>`,
         link: function (scope) {
-            scope.text = 'Books directive';
         }
     };
 }

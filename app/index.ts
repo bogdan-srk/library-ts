@@ -8,6 +8,8 @@ import {routeConfig} from "./route";
 import {BooksDirective} from "./books/books.directive";
 import {BookDirective} from "./books/book/book.directive";
 import {PageBookDirective} from "./book/page-book.directive";
+import {CommentsDirective} from "./comments/comments.directive";
+import {CommentDirective} from "./comments/comment/comment.directive";
 
 angular.module('app', [ngRoute])
     .controller('booksController', BooksController)
@@ -15,6 +17,8 @@ angular.module('app', [ngRoute])
     .directive('pageBooks', BooksDirective)
     .directive('pageBook', PageBookDirective)
     .directive('book', BookDirective)
+    .directive('comments', CommentsDirective)
+    .directive('comment', CommentDirective)
     .config(routeConfig);
 
 
