@@ -1,11 +1,14 @@
+import {BooksService} from "./books.service";
+
 export class BooksController {
 
     static $inject = ['booksService'];
-    private booksService = {};
+    private booksService: BooksService;
     private books = [];
 
-    constructor (booksModel){
-        this.booksService = booksModel;
-        this.books = booksModel.all()
+    constructor (booksService){
+        this.booksService = booksService;
+        this.books = booksService.all();
+        console.log(this.books);
     }
 }

@@ -6,10 +6,10 @@ export function BooksDirective() {
         controllerAs: 'vm',
         controller: BooksController,
         template: `<div ng-repeat="book in vm.books">
-                     <a href="#/books/{{book._id}}">{{book.title}}</a>
+                     <book book-id="{{book._id}}"></book>
+                     <a href="#/books/{{book._id}}">Watch more...</a>
                    </div>`,
         link: function (scope) {
-            console.log('books directive');
             scope.text = 'Books directive';
         }
     };

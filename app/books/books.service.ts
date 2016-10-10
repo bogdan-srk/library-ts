@@ -1,35 +1,99 @@
-export class BooksService {
-    books = [];
+export interface IBooksService {
+    all(): Array<Book>
+    getOne(bookId: number): Book
+    addBook(title: string, author: string, pageCount: number): void
+    addComment(bookId: number, title: string, text: string, rating: number): void
+}
+
+export class BooksService implements IBooksService {
+    private books = [];
 
     constructor() {
-        this.books = [
-            {_id: 0,title: 'title'},
-            {_id: 1,title: 'title'},
-            {_id: 2,title: 'title'},
-            {_id: 3,title: 'title'},
-            {_id: 4,title: 'title'},
-            {_id: 5,title: 'title'},
-            {_id: 6,title: 'title'}
-        ];
+        let booksCount = 10;
+        let commentsCount = 10;
+        for (let i = 0; i < booksCount; i++) {
+            this.addBook(
+                `Book title ${i}`,
+                'Name of author',
+                Math.floor((Math.random() * 10) + 1)
+            );
+            for (let j = 0; j < commentsCount; j++) {
+                this.books[i].addComment(
+                    `Name ${this.books[i].comments.length}`,
+                    `Text text`,
+                    Math.floor((Math.random() * 10) + 1))
+            }
+        }
     }
 
-    all(){
+    all(): Array<Book> {
         return this.books;
     }
 
-    add(title){
-        this.books.push(new Book(title));
-    }}
+    addBook(title: string, author: string, pageCount: number): void {
+        this.books.push(
+            new Book(this.books.length, title, author, pageCount)
+        );
+    }
 
+    addComment(bookId: number, title: string, text: string, rating: number): void {
+        this.books[bookId].addComment(title, text, rating);
+    }
 
-interface IBook {
-    title: string
+    getOne(bookId: number): Book {
+        return this.books[bookId];
+    }
 }
 
-class Book implements IBook{
-    title: string;
 
-    constructor(title: string){
-        this.title = title
+export interface IBook {
+    _id: number
+    title: string
+    author: string
+    pageCount: number
+    rating: number
+    comments: Array<Comment>
+
+}
+
+export class Book implements IBook {
+    _id: number;
+    title: string;
+    author: string;
+    pageCount: number;
+    rating: number;
+    comments: Array<Comment> = [];
+
+    constructor(_id: number, title: string, author: string, pageCount: number) {
+        this._id = _id;
+        this.title = title;
+        this.author = author;
+        this.pageCount = pageCount;
+        this.rating = 0;
+    }
+
+    addComment(title: string, text: string, rating: number) {
+        this.comments.push(new Comment(this.comments.length, title, text, rating))
+    }
+}
+
+export interface IComment {
+    _id: number
+    name: string
+    text: string
+    rating: number
+}
+
+export class Comment implements IComment {
+    _id: number;
+    name: string;
+    text: string;
+    rating: number;
+
+    constructor(_id: number, name: string, text: string, rating: number) {
+        this._id = _id;
+        this.name = name;
+        this.text = text;
+        this.rating = rating;
     }
 }
