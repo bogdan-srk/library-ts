@@ -10,6 +10,8 @@ import {BookDirective} from "./books/book/book.directive";
 import {PageBookDirective} from "./book/page-book.directive";
 import {CommentsDirective} from "./comments/comments.directive";
 import {CommentDirective} from "./comments/comment/comment.directive";
+import {NewCommentDirective} from "./comments/newComment/newComment.directive";
+import {ContenteditableDirective} from "./util/directives/contenteditable.directive";
 
 angular.module('app', [ngRoute])
     .controller('booksController', BooksController)
@@ -19,6 +21,9 @@ angular.module('app', [ngRoute])
     .directive('book', BookDirective)
     .directive('comments', CommentsDirective)
     .directive('comment', CommentDirective)
+    .directive('newComment', NewCommentDirective)
+
+    .directive('contenteditable', ContenteditableDirective)
     .config(routeConfig);
 
 

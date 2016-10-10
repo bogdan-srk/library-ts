@@ -1,6 +1,6 @@
 import {Comment, IModel} from "../books/books.service";
 
-export interface CommentsController {
+export interface ICommentsController {
     comments: Array<Comment>;
     model: IModel;
 }

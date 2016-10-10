@@ -12,7 +12,8 @@ export function PageBookDirective (): ng.IDirective {
             <li>{{vm.book.pageCount}} </li>
             <li>{{vm.book.rating}}</li>
         </ul>
-        <comments comments-to="vm.book" model="vm.booksService"></comments>`,
+        <comments comments-to="vm.book" model="vm.booksService"></comments>
+        `,
         link: function (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: IPageBookController) {
         }
     }

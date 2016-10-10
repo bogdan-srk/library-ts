@@ -32,21 +32,21 @@ export class BooksService implements IBooksService {
         }
     }
 
-    all(): Array<Book> {
+    public all(): Array<Book> {
         return this.books;
     }
 
-    addBook(title: string, author: string, pageCount: number): void {
+    public addBook(title: string, author: string, pageCount: number): void {
         this.books.push(
             new Book(this.books.length, title, author, pageCount)
         );
     }
 
-    addComment(bookId: number, title: string, text: string, rating: number): void {
+    public addComment(bookId: number, title: string, text: string, rating: number): void {
         this.books[bookId].addComment(title, text, rating);
     }
 
-    getOne(bookId: number): Book {
+    public getOne(bookId: number): Book {
         return this.books[bookId];
     }
 }
