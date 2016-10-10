@@ -1,5 +1,5 @@
-import {PageBookController} from "./page-book.controller";
-export function PageBookDirective (){
+import {PageBookController, IPageBookController} from "./page-book.controller";
+export function PageBookDirective (): ng.IDirective {
     return {
         restrict: 'E',
         controllerAs: 'vm',
@@ -13,7 +13,7 @@ export function PageBookDirective (){
             <li>{{vm.book.rating}}</li>
         </ul>
         <comments comments-to="vm.book" model="vm.booksService"></comments>`,
-        link: function (scope, elem, attr, ctrl) {
+        link: function (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: IPageBookController) {
         }
     }
 }

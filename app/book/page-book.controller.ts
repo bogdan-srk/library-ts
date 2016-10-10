@@ -1,13 +1,22 @@
 import {Book, BooksService} from "../books/books.service";
 
-export class PageBookController {
+export interface IPageBookRouteParams extends ng.route.IRouteParamsService {
+    id: number
+}
 
-    book: Book;
-    booksService: BooksService;
+export interface IPageBookController extends ng.IController {
+    book: Book
+    booksService: BooksService
+}
+
+export class PageBookController implements IPageBookController {
+
+    public book: Book;
+    public booksService: BooksService;
 
     static $inject = ['$routeParams', 'booksService'];
 
-    constructor($routeParams, BooksService){
+    constructor($routeParams: IPageBookRouteParams, BooksService: BooksService) {
         this.book = BooksService.getOne($routeParams.id);
         this.booksService = BooksService;
     }

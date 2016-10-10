@@ -1,4 +1,9 @@
-export interface IBooksService {
+export interface IModel {
+    all(): Array<any>
+    getOne(id: number)
+}
+
+export interface IBooksService extends IModel{
     all(): Array<Book>
     getOne(bookId: number): Book
     addBook(title: string, author: string, pageCount: number): void
@@ -6,11 +11,12 @@ export interface IBooksService {
 }
 
 export class BooksService implements IBooksService {
-    private books = [];
+    private books: Array<Book> = [];
 
     constructor() {
-        let booksCount = 10;
-        let commentsCount = 10;
+        const booksCount: number = 10;
+        const commentsCount: number = 10;
+
         for (let i = 0; i < booksCount; i++) {
             this.addBook(
                 `Book title ${i}`,
@@ -44,7 +50,6 @@ export class BooksService implements IBooksService {
         return this.books[bookId];
     }
 }
-
 
 export interface IBook {
     _id: number

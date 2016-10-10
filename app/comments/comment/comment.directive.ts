@@ -1,6 +1,6 @@
-import {CommentController} from "./comment.controller";
+import {CommentController, ICommentController} from "./comment.controller";
 
-export function CommentDirective() {
+export function CommentDirective(): ng.IDirective  {
     return {
         scope: {
             commentData: '='
@@ -12,8 +12,7 @@ export function CommentDirective() {
             <p>{{vm.text}}</p>
             <span>Rating: {{vm.rating}}</span>
         `,
-        link: (scope, elem, attr, ctrl) => {
-            //console.log(scope)
+        link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: ICommentController) => {
         }
     }
 }

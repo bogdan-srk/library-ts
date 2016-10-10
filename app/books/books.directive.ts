@@ -1,5 +1,5 @@
-import {BooksController} from "./books.controller";
-export function BooksDirective() {
+import {BooksController, IBooksController} from "./books.controller";
+export function BooksDirective(): ng.IDirective {
     return {
         restrict: 'E',
         scope: {},
@@ -10,7 +10,7 @@ export function BooksDirective() {
                      <book book-id="{{book._id}}"></book>
                      <a href="#/books/{{book._id}}">Watch more...</a>
                    </div>`,
-        link: function (scope) {
+        link: function (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: IBooksController) {
         }
     };
 }

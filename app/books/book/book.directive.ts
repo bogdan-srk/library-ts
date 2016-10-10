@@ -1,6 +1,6 @@
-import {BookController} from "./book.controller";
+import {BookController, IBookController} from "./book.controller";
 
-export function BookDirective() {
+export function BookDirective(): ng.IDirective  {
     return {
         restrict: 'E',
         scope: {
@@ -15,7 +15,7 @@ export function BookDirective() {
                      <li>{{vm.book.pageCount}} </li>
                      <li>{{vm.book.rating}}</li>
                    </ul>`,
-        link: function (scope, element, attrs, ctrl) {
+        link: function (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: IBookController) {
         }
     };
 

@@ -1,11 +1,16 @@
-import {Comment} from "../books/books.service";
+import {Comment, IModel} from "../books/books.service";
+
+export interface CommentsController {
+    comments: Array<Comment>;
+    model: IModel;
+}
 
 export class CommentsController {
 
     static $inject = ['$scope'];
 
-    comments: Array<Comment>;
-    model: any;
+    public comments: Array<Comment>;
+    public model: IModel;
 
     constructor($scope){
         this.comments = $scope.commentsTo.comments;

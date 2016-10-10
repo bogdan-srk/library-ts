@@ -1,10 +1,15 @@
-import {BooksService} from "./books.service";
+import {BooksService, Book} from "./books.service";
 
-export class BooksController {
+export interface IBooksController extends ng.IController{
+    booksService: BooksService
+    books: Array<Book>
+}
 
-    static $inject = ['booksService'];
-    private booksService: BooksService;
-    private books = [];
+export class BooksController implements IBooksController{
+
+    static $inject: Array<string> = ['booksService'];
+    public booksService: BooksService;
+    public books: Array<Book>;
 
     constructor (booksService){
         this.booksService = booksService;

@@ -1,5 +1,5 @@
 import {CommentsController} from "./comments.controller";
-export function CommentsDirective() {
+export function CommentsDirective(): ng.IDirective  {
     return {
         scope: {
             commentsTo: '=',
