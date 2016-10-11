@@ -7,7 +7,7 @@ export function ContenteditableDirective(): ng.IDirective {
             ngModel[0].$render = function () {
                 element.html(ngModel[0].$viewValue || '');
             };
-            element.on('blur keyup change', function () {
+            element.on('blur keyup change focus', function () {
                 scope.$apply(() => {
                     let html = element.html();
                     if (attrs.stripBr && html == '<br>') {

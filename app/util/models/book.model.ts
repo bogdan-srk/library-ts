@@ -7,8 +7,6 @@ export interface IBook {
     pageCount: number
     rating?: number
     comments?: Array<Comment>
-
-    addComment(comment: IComment): void
 }
 
 export class Book implements IBook, IDataModel, ICommentable {
@@ -27,9 +25,5 @@ export class Book implements IBook, IDataModel, ICommentable {
         this.pageCount = pageCount;
         this.rating = 0;
         this.comments = []
-    }
-
-    addComment(comment: IComment): void {
-        this.comments.push(new Comment(this.comments.length, comment))
     }
 }

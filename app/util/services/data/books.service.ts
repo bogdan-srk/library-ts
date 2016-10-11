@@ -1,12 +1,12 @@
 import {Book} from "../../models/book.model";
-import {IComment} from "../../models/comment.model";
+import {Comment, IComment} from "../../models/comment.model";
 
 export interface IDataService {
     all(): Array<any>
     getOne(id: number): void
 }
 
-export interface IBooksService extends IDataService{
+export interface IBooksService extends IDataService {
     all(): Array<Book>
     getOne(bookId: number): Book
     addBook(title: string, author: string, pageCount: number): void
@@ -27,7 +27,7 @@ export class BooksService implements IBooksService {
                 Math.floor((Math.random() * 10) + 1)
             );
             for (let j = 0; j < commentsCount; j++) {
-                this.books[i].addComment(<IComment>{
+                this.addComment(i,<IComment>{
                     name: `Name ${this.books[i].comments.length}`,
                     text: `Text text`,
                     rating: Math.floor((Math.random() * 10) + 1)
@@ -47,7 +47,7 @@ export class BooksService implements IBooksService {
     }
 
     public addComment(bookId: number, comment: IComment): void {
-        this.books[bookId].addComment(comment);
+        this.books[bookId].comments.push(new Comment(this.books[bookId].comments.length, comment))
     }
 
     public getOne(bookId: number): Book {

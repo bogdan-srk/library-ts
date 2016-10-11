@@ -1,4 +1,5 @@
 import {CommentsController, ICommentsController} from "./comments.controller";
+import * as angular from "angular"
 
 export function CommentsDirective(): ng.IDirective  {
     return {
@@ -9,7 +10,9 @@ export function CommentsDirective(): ng.IDirective  {
         controllerAs: 'vm',
         controller: CommentsController,
         template: `
-            <new-comment target="vm.dataService" target-model="vm.dataService"></new-comment>
+            <input type="text" ng-model="vm.name">
+            <div ng-model="vm.text" style="width: 200px; min-height: 100px;" contenteditable="true"></div>
+            <button ng-click="vm.sendComment()" class="send-comment">Send</button>
             <ul ng-repeat="comment in vm.target.comments">
                 <li>
                     <comment comment-data="comment"></comment>
@@ -17,6 +20,7 @@ export function CommentsDirective(): ng.IDirective  {
             </ul>
         `,
         link: function (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: ICommentsController) {
+
         }
     }
 }
