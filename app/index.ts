@@ -3,7 +3,7 @@ import * as ngRoute from 'angular-route'
 import {config} from "./app.config";
 
 import {BooksController} from "./books/books.controller";
-import {BooksService} from "./books/books.service";
+import {BooksService} from "./util/services/data/books.service";
 import {routeConfig} from "./route";
 import {BooksDirective} from "./books/books.directive";
 import {BookDirective} from "./books/book/book.directive";

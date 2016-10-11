@@ -1,4 +1,5 @@
-import {BooksService, Book} from "./books.service";
+import {BooksService} from "../util/services/data/books.service";
+import {Book} from "../util/models/book.model";
 
 export interface IBooksController extends ng.IController{
     booksService: BooksService

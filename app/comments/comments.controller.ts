@@ -1,8 +1,8 @@
-import {Comment, IModel} from "../books/books.service";
 
+import {IDataService} from "../util/services/data/books.service";
 export interface ICommentsController {
     comments: Array<Comment>;
-    model: IModel;
+    model: IDataService;
 }
 
 export class CommentsController {
@@ -10,10 +10,11 @@ export class CommentsController {
     static $inject = ['$scope'];
 
     public comments: Array<Comment>;
-    public model: IModel;
+    public model: IDataService;
 
     constructor($scope){
         this.comments = $scope.commentsTo.comments;
         this.model = $scope.model;
+        console.log(this)
     }
 }

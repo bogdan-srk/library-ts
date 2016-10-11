@@ -1,9 +1,11 @@
-export interface IModel {
+import {Book} from "../../models/book.model";
+
+export interface IDataService {
     all(): Array<any>
-    getOne(id: number)
+    getOne(id: number): void
 }
 
-export interface IBooksService extends IModel{
+export interface IBooksService extends IDataService{
     all(): Array<Book>
     getOne(bookId: number): Book
     addBook(title: string, author: string, pageCount: number): void
@@ -48,57 +50,5 @@ export class BooksService implements IBooksService {
 
     public getOne(bookId: number): Book {
         return this.books[bookId];
-    }
-}
-
-export interface IBook {
-    _id: number
-    title: string
-    author: string
-    pageCount: number
-    rating: number
-    comments: Array<Comment>
-
-}
-
-export class Book implements IBook {
-    _id: number;
-    title: string;
-    author: string;
-    pageCount: number;
-    rating: number;
-    comments: Array<Comment> = [];
-
-    constructor(_id: number, title: string, author: string, pageCount: number) {
-        this._id = _id;
-        this.title = title;
-        this.author = author;
-        this.pageCount = pageCount;
-        this.rating = 0;
-    }
-
-    addComment(title: string, text: string, rating: number) {
-        this.comments.push(new Comment(this.comments.length, title, text, rating))
-    }
-}
-
-export interface IComment {
-    _id: number
-    name: string
-    text: string
-    rating: number
-}
-
-export class Comment implements IComment {
-    _id: number;
-    name: string;
-    text: string;
-    rating: number;
-
-    constructor(_id: number, name: string, text: string, rating: number) {
-        this._id = _id;
-        this.name = name;
-        this.text = text;
-        this.rating = rating;
     }
 }
