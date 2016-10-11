@@ -9,8 +9,8 @@ export function CommentsDirective(): ng.IDirective  {
         controllerAs: 'vm',
         controller: CommentsController,
         template: `
-            <new-comment target-data="" target-model="vm.model"></new-comment>
-            <ul ng-repeat="comment in vm.comments">
+            <new-comment target="vm.dataService" target-model="vm.dataService"></new-comment>
+            <ul ng-repeat="comment in vm.target.comments">
                 <li>
                     <comment comment-data="comment"></comment>
                 </li>

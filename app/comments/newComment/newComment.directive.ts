@@ -3,7 +3,7 @@ import * as angular from "angular"
 export function NewCommentDirective(): ng.IDirective {
     return {
         scope: {
-            targetData: "=",
+            target: "=",
             targetModel: "="
         },
         controllerAs: 'vm',
@@ -13,12 +13,11 @@ export function NewCommentDirective(): ng.IDirective {
         <div ng-model="vm.comment" style="width: 200px; min-height: 100px;" contenteditable="true"></div>
         <button class="send-comment">Send</button>
         `,
-        link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl:INewCommentController) => {
-
+        link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: INewCommentController) => {
             //noinspection TypeScriptUnresolvedFunction,TypeScriptValidateTypes
             let submitButton = angular.element(elem.children()[2]);
-
             submitButton.on('click', (e) => {
+                console.log(scope);
                 console.log({name: ctrl.name, comment: ctrl.comment});
             });
         }

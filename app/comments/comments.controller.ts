@@ -1,19 +1,20 @@
-import {Comment, IModel} from "../books/books.service";
-
+import {IDataService} from "../util/services/data/books.service";
+import {ICommentable} from "../util/models/dataModel.interface";
 export interface ICommentsController {
     comments: Array<Comment>;
-    model: IModel;
+    model: IDataService;
 }
 
 export class CommentsController {
 
     static $inject = ['$scope'];
 
-    public comments: Array<Comment>;
-    public model: IModel;
+    public target: ICommentable;
+    public dataService: IDataService;
 
     constructor($scope){
-        this.comments = $scope.commentsTo.comments;
-        this.model = $scope.model;
+        this.target = $scope.commentsTo;
+        this.dataService = $scope.model;
+        console.log(this)
     }
 }

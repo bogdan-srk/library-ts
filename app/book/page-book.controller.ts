@@ -1,4 +1,5 @@
-import {Book, BooksService} from "../books/books.service";
+import {Book} from "../util/models/book.model";
+import {BooksService} from "../util/services/data/books.service";
 
 export interface IPageBookRouteParams extends ng.route.IRouteParamsService {
     id: number
