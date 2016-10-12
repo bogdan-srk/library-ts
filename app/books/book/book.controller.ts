@@ -6,7 +6,10 @@ export interface IBookController extends ng.IController{
 
 export class BookController implements IBookController {
     public book: Book;
-    constructor($scope, BooksService) {
-        this.book = BooksService.getOne($scope.bookId);
+
+    static $inject = ['$scope'];
+
+    constructor($scope) {
+        this.book = $scope.book;
     }
 }

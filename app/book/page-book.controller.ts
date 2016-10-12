@@ -15,10 +15,20 @@ export class PageBookController implements IPageBookController {
     public book: Book;
     public booksService: BooksService;
 
+    private $routeParams;
+
     static $inject = ['$routeParams', 'booksService'];
 
     constructor($routeParams: IPageBookRouteParams, BooksService: BooksService) {
-        this.book = BooksService.getOne($routeParams.id);
+        this.$routeParams = $routeParams;
         this.booksService = BooksService;
+
+        this.setBook();
+    }
+
+    private setBook(){
+        this.booksService.getOne(this.$routeParams.id).then((book: Book) => {
+            this.book = book;
+        });
     }
 }

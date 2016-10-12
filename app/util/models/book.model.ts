@@ -24,6 +24,5 @@ export class Book implements IBook, IDataModel, ICommentable {
         this.author = author;
         this.pageCount = pageCount;
         this.rating = 0;
-        this.comments = []
     }
 }
