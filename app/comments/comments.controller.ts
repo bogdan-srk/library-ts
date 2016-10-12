@@ -37,9 +37,10 @@ export class CommentsController {
                 name: this.name,
                 text: this.text,
                 rating: 5
-            });
-        this.name = '';
-        this.text = '';
-        console.log(this.commentsTo);
+            }).then(() => {
+            this.name = '';
+            this.text = '';
+        });
+
     }
 }

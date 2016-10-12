@@ -32,16 +32,17 @@ export function appRun($httpBackend, storageService: IStorageService): void {
             console.log({method, url, data, headers});
             let id = url.split('/')[3];
             let books = storageService.get();
-            console.log(id);
             return [200, {book: books[id]}, {}]
         });
     $httpBackend
         .whenPOST(/\/api\/books\/.*/)
-        .respond((method, url, data: Comment, headers) => {
+        .respond((method, url, data, headers) => {
             console.log({method, url, data, headers});
+            let comment = JSON.parse(data);
             let id = url.split('/')[3];
             let books = storageService.get();
-            books[id].comments.push(data);
+            comment._id = books[id].comments.length;
+            books[id].comments.push(comment);
             storageService.save(books);
             return [200, {}, {}];
         });

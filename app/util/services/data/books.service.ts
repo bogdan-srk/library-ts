@@ -1,5 +1,6 @@
 import {Book} from "../../models/book.model";
 import {Comment, IComment} from "../../models/comment.model";
+import IPromise = angular.IPromise;
 
 export interface IDataService {
     all()
@@ -10,7 +11,7 @@ export interface IBooksService extends IDataService {
     all()
     getOne(bookId: number)
     addBook(title: string, author: string, pageCount: number): void
-    addComment(bookId: number, comment: IComment): void
+    addComment(bookId: number, comment: IComment): IPromise<any>
 }
 
 export class BooksService implements IBooksService {
@@ -60,13 +61,12 @@ export class BooksService implements IBooksService {
         // );
     }
 
-    public addComment(bookId: number, comment: IComment): void {
+    public addComment(bookId: number, comment: IComment) {
         console.log({bookId, comment});
-        return this.$http.post('/api/books', {
-            book: new Comment(0, comment)
-        }).then((res) => {
-            return res;
-        });
+        return this.$http.post('/api/books/' + bookId, new Comment(bookId, comment))
+            .then((res) => {
+                return res;
+            });
         //this.books[bookId].comments.push(new Comment(this.books[bookId].comments.length, comment))
     }
 

@@ -22,7 +22,6 @@ export class StorageService implements IStorageService {
     }
 
     public save(books: Array<IBook>): boolean{
-        console.log(books);
         localStorage.setItem('library', JSON.stringify(books));
         return true;
     }
