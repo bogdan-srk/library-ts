@@ -1,5 +1,4 @@
 import {IStorageService} from "./util/services/data/storage.service";
-import IHttpBackendService = angular.IHttpBackendService;
 import {IComment} from "./util/models/comment.model";
 appRun.$inject = ['$httpBackend', 'storageService'];
 
@@ -44,7 +43,8 @@ export function appRun($httpBackend, storageService: IStorageService): void {
             comment._id = books[id].comments.length;
             books[id].comments.push(comment);
             storageService.save(books);
-            return [200, {}, {}];
+            console.log(books[id]);
+            return [200, storageService.get(id), {}];
         });
 
 }

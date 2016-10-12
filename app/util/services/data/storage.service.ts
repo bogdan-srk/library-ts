@@ -1,10 +1,10 @@
 import IPromise = angular.IPromise;
-import {IBook} from "../../models/book.model";
+import {IBook, Book} from "../../models/book.model";
 import IQService = angular.IQService;
 
 export interface IStorageService {
     save(books: Array<IBook>): boolean
-    get(): Array<any>
+    get(id?: number): Array<Book>
 }
 
 export class StorageService implements IStorageService {
@@ -26,7 +26,12 @@ export class StorageService implements IStorageService {
         return true;
     }
 
-    public get(): Array<any>{
-        return JSON.parse(localStorage.getItem('library'));
+    public get(id?: number): Array<Book>{
+        let response: Array<Book>;
+        let booksData = JSON.parse(localStorage.getItem('library'));
+        response = id == undefined
+            ? booksData
+            : booksData[id];
+        return response;
     }
 }

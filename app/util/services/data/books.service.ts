@@ -3,15 +3,15 @@ import {Comment, IComment} from "../../models/comment.model";
 import IPromise = angular.IPromise;
 
 export interface IDataService {
-    all()
+    all(): IPromise<any>
     getOne(id: number)
 }
 
 export interface IBooksService extends IDataService {
-    all()
-    getOne(bookId: number)
-    addBook(title: string, author: string, pageCount: number): void
-    addComment(bookId: number, comment: IComment): IPromise<any>
+    all(): IPromise<any>
+    getOne(bookId: number): ng.IPromise<void>
+    addBook(title: string, author: string, pageCount: number): ng.IPromise<void>
+    addComment(bookId: number, comment: IComment): ng.IPromise<void>
 }
 
 export class BooksService implements IBooksService {
@@ -24,7 +24,6 @@ export class BooksService implements IBooksService {
 
         // const booksCount: number = 10;
         // const commentsCount: number = 10;
-
         // for (let i = 0; i < booksCount; i++) {
         //     this.books.push(
         //         new Book(this.books.length, `Book title ${i}`,
@@ -44,30 +43,25 @@ export class BooksService implements IBooksService {
         // localStorage.setItem('library', JSON.stringify(this.books))
     }
 
-    public all() {
+    public all(): IPromise<any> {
         return this.$http.get('/api/books').then((res) => {
             return res.data.books;
         });
     }
 
-    public addBook(title: string, author: string, pageCount: number): void {
+    public addBook(title: string, author: string, pageCount: number): ng.IPromise<void> {
         return this.$http.post('/api/books', {
             book: new Book(0, title, author, pageCount)
         }).then((res) => {
             return res;
         });
-        // this.books.push(
-        //     new Book(this.books.length, title, author, pageCount)
-        // );
     }
 
     public addComment(bookId: number, comment: IComment) {
-        console.log({bookId, comment});
         return this.$http.post('/api/books/' + bookId, new Comment(bookId, comment))
             .then((res) => {
-                return res;
+                return res.data;
             });
-        //this.books[bookId].comments.push(new Comment(this.books[bookId].comments.length, comment))
     }
 
     public getOne(bookId: number) {

@@ -24,7 +24,7 @@ export class CommentsController {
     private $q;
     private $scope;
 
-    constructor($scope, $q){
+    constructor($scope, $q) {
         this.$q = $q;
         this.$scope = $scope;
         this.dataService = $scope.model;
@@ -37,10 +37,11 @@ export class CommentsController {
                 name: this.name,
                 text: this.text,
                 rating: 5
-            }).then(() => {
+            }).then((commentTo) => {
             this.name = '';
             this.text = '';
+            this.commentsTo = commentTo;
         });
-
     }
+
 }
