@@ -12,11 +12,11 @@ import {CommentsDirective} from "./comments/comments.directive";
 import {CommentDirective} from "./comments/comment/comment.directive";
 import {NewCommentDirective} from "./comments/newComment/newComment.directive";
 import {ContenteditableDirective} from "./util/directives/contenteditable.directive";
-import {appRun} from "./app.run";
 import {StorageService} from "./util/services/data/storage.service";
+import {fakeServerRoutes} from "./fakeServer/fakeServer.routes";
 
 angular.module('app', [ngRoute, 'ngMockE2E'])
-    .run(appRun)
+    .run(fakeServerRoutes)
     .controller('booksController', BooksController)
     .service('booksService', BooksService)
     .service('storageService', StorageService)

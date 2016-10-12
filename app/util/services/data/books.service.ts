@@ -22,25 +22,25 @@ export class BooksService implements IBooksService {
         this.books = [];
         this.$http = $http;
 
-        // const booksCount: number = 10;
-        // const commentsCount: number = 10;
-        // for (let i = 0; i < booksCount; i++) {
-        //     this.books.push(
-        //         new Book(this.books.length, `Book title ${i}`,
-        //             'Name of author',
-        //             Math.floor((Math.random() * 10) + 1))
-        //     );
-        //     for (let j = 0; j < commentsCount; j++) {
-        //         this.books[i].comments.push(
-        //             new Comment(this.books[i].comments.length, <IComment>{
-        //                 name: `Name ${this.books[i].comments.length}`,
-        //                 text: `Text text`,
-        //                 rating: Math.floor((Math.random() * 10) + 1)
-        //             })
-        //         )
-        //     }
-        // }
-        // localStorage.setItem('library', JSON.stringify(this.books))
+        if (true) {const booksCount: number = 10;
+        const commentsCount: number = 10;
+        for (let i = 0; i < booksCount; i++) {
+            this.books.push(
+                new Book(this.books.length, `Book title ${i}`,
+                    'Name of author',
+                    Math.floor((Math.random() * 10) + 1))
+            );
+            for (let j = 0; j < commentsCount; j++) {
+                this.books[i].comments.push(
+                    new Comment(this.books[i].comments.length, <IComment>{
+                        name: `Name ${this.books[i].comments.length}`,
+                        text: `Text text`,
+                        rating: Math.floor((Math.random() * 10) + 1)
+                    })
+                )
+            }
+        }
+        localStorage.setItem('library', JSON.stringify(this.books))}
     }
 
     public all(): IPromise<any> {

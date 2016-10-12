@@ -1,8 +1,7 @@
-import {IStorageService} from "./util/services/data/storage.service";
-import {IComment} from "./util/models/comment.model";
-appRun.$inject = ['$httpBackend', 'storageService'];
+import {IStorageService} from "../util/services/data/storage.service";
+fakeServerRoutes.$inject = ['$httpBackend', 'storageService'];
 
-export function appRun($httpBackend, storageService: IStorageService): void {
+export function fakeServerRoutes($httpBackend, storageService: IStorageService): void {
 
     $httpBackend
         .whenGET('/api/books')
@@ -46,5 +45,4 @@ export function appRun($httpBackend, storageService: IStorageService): void {
             console.log(books[id]);
             return [200, storageService.get(id), {}];
         });
-
 }
