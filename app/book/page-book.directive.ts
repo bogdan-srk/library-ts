@@ -11,7 +11,9 @@ export function PageBookDirective (): ng.IDirective {
             <li>Author: {{vm.book.author}}</li>
             <li>Pages: {{vm.book.pageCount}}</li>
             <li>Rating: {{vm.book.rating}}</li>
+            <li>Ordered: {{vm.book.orderCount}}</li>
             <li>Is available: {{vm.book.isAvailable}}</li>
+            <order-book book="vm.book"></order-book>
         </ul>
         <comments comments-to="vm.book" model="vm.booksService"></comments>
         `,

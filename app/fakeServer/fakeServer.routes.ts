@@ -9,7 +9,6 @@ export function fakeServerRoutes($httpBackend, storageService: IStorageService):
         .whenGET('/api/books')
         .respond((method, url, data, headers) => {
             let books = storageService.get();
-            console.log(books);
             return [
                 200,
                 {books},
@@ -31,7 +30,6 @@ export function fakeServerRoutes($httpBackend, storageService: IStorageService):
     $httpBackend
         .whenGET(/\/api\/books\/(.+)/, undefined, ['books'])
         .respond((method, url, data, headers) => {
-            console.log({method, url, data, headers});
             let id = url.split('/')[3];
             let books = storageService.get();
             return [200, {book: books[id]}, {}]
@@ -46,9 +44,22 @@ export function fakeServerRoutes($httpBackend, storageService: IStorageService):
 
             comment._id = books[id].comments.length;
             books[id].comments.push(comment);
-            books[id].rating += comment.rating;
+            books[id].rating = parseInt(books[id].rating) + parseInt(comment.rating);
             storageService.save(books);
 
-            return [200, storageService.get(id), {}];
+            return [200, storageService.get(id)[0], {}];
         });
+
+    $httpBackend
+        .whenPOST(/\/api\/order\/book\/.*/)
+        .respond((method, url, data, headers) => {
+            let id: number = url.split('/')[4];
+            let books: Array<Book> = storageService.get();
+            let book: Book = books[id];
+            books[id].orderCount = parseInt(book.orderCount) + 1;
+            console.log(books);
+            storageService.save(books);
+            return [200, storageService.get(id)[0], {}];
+        })
+
 }

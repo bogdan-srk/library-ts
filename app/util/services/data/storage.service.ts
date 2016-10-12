@@ -31,7 +31,7 @@ export class StorageService implements IStorageService {
         let booksData = JSON.parse(localStorage.getItem('library'));
         response = id == undefined
             ? booksData
-            : booksData[id];
+            : [booksData[id]];
         return response;
     }
 }

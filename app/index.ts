@@ -14,6 +14,7 @@ import {NewCommentDirective} from "./comments/newComment/newComment.directive";
 import {ContenteditableDirective} from "./util/directives/contenteditable.directive";
 import {StorageService} from "./util/services/data/storage.service";
 import {fakeServerRoutes} from "./fakeServer/fakeServer.routes";
+import {OrderBookDirective} from "./order-book/order-book.directive";
 
 angular.module('app', [ngRoute, 'ngMockE2E'])
     .run(fakeServerRoutes)
@@ -23,9 +24,11 @@ angular.module('app', [ngRoute, 'ngMockE2E'])
     .directive('pageBooks', BooksDirective)
     .directive('pageBook', PageBookDirective)
     .directive('book', BookDirective)
+    .directive('orderBook', OrderBookDirective)
     .directive('comments', CommentsDirective)
     .directive('comment', CommentDirective)
     .directive('newComment', NewCommentDirective)
+
 
     .directive('contenteditable', ContenteditableDirective)
     .config(routeConfig);
