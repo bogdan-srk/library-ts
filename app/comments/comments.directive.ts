@@ -13,6 +13,27 @@ export function CommentsDirective(): ng.IDirective  {
         template: `
             <input type="text" ng-model="vm.name">
             <div ng-model="vm.text" style="width: 200px; min-height: 100px;" contenteditable="true"></div>
+            <label>
+                <input type="radio" ng-model="vm.rating" value="1"/>
+                1
+            </label>
+            <label>
+                <input type="radio" ng-model="vm.rating" value="2"/>
+                2
+            </label>
+            <label>
+                <input type="radio" ng-model="vm.rating" value="3"/>
+                3
+            </label>
+            <label>
+                <input type="radio" ng-model="vm.rating" value="4"/>
+                4
+            </label>
+            <label>
+                <input type="radio" ng-model="vm.rating" value="5"/>
+                5
+            </label>
+            <br>
             <button ng-click="vm.sendComment()" class="send-comment">Send</button>
             <ul ng-repeat="comment in vm.commentsTo.comments">
                 <li>

@@ -7,10 +7,11 @@ export function PageBookDirective (): ng.IDirective {
         template: `
         <a href="#/">Back to books</a>
         <ul>
-            <li>{{vm.book.title}}</li>
-            <li>{{vm.book.author}}</li>
-            <li>{{vm.book.pageCount}}</li>
-            <li>{{vm.book.rating}}</li>
+            <li>Title: {{vm.book.title}}</li>
+            <li>Author: {{vm.book.author}}</li>
+            <li>Pages: {{vm.book.pageCount}}</li>
+            <li>Rating: {{vm.book.rating}}</li>
+            <li>Is available: {{vm.book.isAvailable}}</li>
         </ul>
         <comments comments-to="vm.book" model="vm.booksService"></comments>
         `,

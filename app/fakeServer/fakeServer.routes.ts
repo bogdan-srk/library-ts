@@ -1,8 +1,9 @@
-import {IStorageService} from "./util/services/data/storage.service";
-import {IComment} from "./util/models/comment.model";
-appRun.$inject = ['$httpBackend', 'storageService'];
+import {IStorageService} from "../util/services/data/storage.service";
+import {Book} from "../util/models/book.model";
+import {Comment} from "../util/models/comment.model";
+fakeServerRoutes.$inject = ['$httpBackend', 'storageService'];
 
-export function appRun($httpBackend, storageService: IStorageService): void {
+export function fakeServerRoutes($httpBackend, storageService: IStorageService): void {
 
     $httpBackend
         .whenGET('/api/books')
@@ -15,6 +16,7 @@ export function appRun($httpBackend, storageService: IStorageService): void {
                 {}
             ]
         });
+
     $httpBackend
         .whenPOST('/api/books')
         .respond((method, url, data, headers) => {
@@ -25,6 +27,7 @@ export function appRun($httpBackend, storageService: IStorageService): void {
             storageService.save(books);
             return [200, {foo: 'bar 1'}, {}]
         });
+
     $httpBackend
         .whenGET(/\/api\/books\/(.+)/, undefined, ['books'])
         .respond((method, url, data, headers) => {
@@ -33,18 +36,19 @@ export function appRun($httpBackend, storageService: IStorageService): void {
             let books = storageService.get();
             return [200, {book: books[id]}, {}]
         });
+
     $httpBackend
         .whenPOST(/\/api\/books\/.*/)
         .respond((method, url, data, headers) => {
-            console.log({method, url, data, headers});
-            let comment = JSON.parse(data);
+            let comment: Comment = JSON.parse(data);
             let id = url.split('/')[3];
-            let books = storageService.get();
+            let books: Array<Book> = storageService.get();
+
             comment._id = books[id].comments.length;
             books[id].comments.push(comment);
+            books[id].rating += comment.rating;
             storageService.save(books);
-            console.log(books[id]);
+
             return [200, storageService.get(id), {}];
         });
-
 }

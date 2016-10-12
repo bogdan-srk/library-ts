@@ -28,6 +28,8 @@ export class CommentsController {
         this.$q = $q;
         this.$scope = $scope;
         this.dataService = $scope.model;
+
+        this.rating = 1;
     }
 
     public sendComment(): void {
@@ -36,10 +38,11 @@ export class CommentsController {
             <IComment>{
                 name: this.name,
                 text: this.text,
-                rating: 5
+                rating: this.rating
             }).then((commentTo) => {
             this.name = '';
             this.text = '';
+            this.rating = 1;
             this.commentsTo = commentTo;
         });
     }

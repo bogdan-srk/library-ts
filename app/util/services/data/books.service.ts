@@ -22,7 +22,7 @@ export class BooksService implements IBooksService {
         this.books = [];
         this.$http = $http;
 
-        // const booksCount: number = 10;
+        // if (false) {const booksCount: number = 10;
         // const commentsCount: number = 10;
         // for (let i = 0; i < booksCount; i++) {
         //     this.books.push(
@@ -40,7 +40,7 @@ export class BooksService implements IBooksService {
         //         )
         //     }
         // }
-        // localStorage.setItem('library', JSON.stringify(this.books))
+        // localStorage.setItem('library', JSON.stringify(this.books))}
     }
 
     public all(): IPromise<any> {
