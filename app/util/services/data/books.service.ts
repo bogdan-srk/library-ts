@@ -42,7 +42,7 @@ export class BooksService implements IBooksService {
     //         }
     //     }
     //     localStorage.setItem('library', JSON.stringify(this.books))}
-    // }
+    }
 
     public all(): IPromise<any> {
         return this.$http.get('/api/books').then((res) => {

@@ -1,8 +1,9 @@
+import IAttributes = angular.IAttributes;
 export function ContenteditableDirective(): ng.IDirective {
     return {
         restrict: 'A',
         require: ['^?ngModel', '^?form'],
-        link: function (scope, element, attrs, ngModel: ng.INgModelController) {
+        link: function (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs, ngModel: ng.INgModelController) {
             if (!ngModel[0]) return;
             ngModel[0].$render = function () {
                 element.html(ngModel[0].$viewValue || '');

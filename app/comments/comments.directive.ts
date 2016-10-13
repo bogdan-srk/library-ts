@@ -14,24 +14,24 @@ export function CommentsDirective(): ng.IDirective  {
             <input type="text" ng-model="vm.name">
             <div ng-model="vm.text" style="width: 200px; min-height: 100px;" contenteditable="true"></div>
             <label>
-                <input type="radio" ng-model="vm.rating" value="1"/>
-                1
+                <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[0]"/>
+                {{vm.RATINGS[0]}}
             </label>
             <label>
-                <input type="radio" ng-model="vm.rating" value="2"/>
-                2
+                <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[1]"/>
+                {{vm.RATINGS[1]}}
             </label>
             <label>
-                <input type="radio" ng-model="vm.rating" value="3"/>
-                3
+                <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[2]"/>
+                {{vm.RATINGS[2]}}
             </label>
             <label>
-                <input type="radio" ng-model="vm.rating" value="4"/>
-                4
+                <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[3]"/>
+                {{vm.RATINGS[3]}}
             </label>
             <label>
-                <input type="radio" ng-model="vm.rating" value="5"/>
-                5
+                <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[4]"/>
+                {{vm.RATINGS[4]}}
             </label>
             <br>
             <button ng-click="vm.sendComment()" class="send-comment">Send</button>
@@ -42,7 +42,6 @@ export function CommentsDirective(): ng.IDirective  {
             </ul>
         `,
         link: function (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: ICommentsController) {
-            //noinspection TypeScriptUnresolvedFunction
             scope.$watch('commentsTo', (newVal: Book) => {
                 ctrl.commentsTo = newVal;
             });

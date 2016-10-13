@@ -22,6 +22,7 @@ export class BooksController implements IBooksController {
     static $inject: Array<string> = ['booksService', '$scope', '$http'];
 
     constructor(booksService, $scope, $http: ng.IHttpService) {
+
         this.booksService = booksService;
         this.$http = $http;
         this.arr = ['asd', 'ased', 'sddd'];
@@ -29,7 +30,6 @@ export class BooksController implements IBooksController {
     }
 
     public test(): void {
-        //noinspection TypeScriptUnresolvedFunction
         this.$http.post('/api/books/1', {mydat: 'mydat'}).then((res) => {
             console.log(res);
         });
@@ -40,16 +40,12 @@ export class BooksController implements IBooksController {
     }
 
     public addBook(): void {
-        //this.books.push(new Book(this.books.length, 'title', 'author', 20 + this.books.length));
-        //noinspection TypeScriptUnresolvedFunction
         this.booksService.addBook(this.title, this.author, this.pageCount).then(() => {
             this.setBooks();
         });
-        //this.setBooks();
     }
 
     private setBooks() {
-        //noinspection TypeScriptUnresolvedFunction
         this.booksService.all().then((books) => {
             this.books = books;
         })

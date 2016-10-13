@@ -21,6 +21,8 @@ export class CommentsController {
     public text: string;
     public rating: number;
 
+    public RATINGS: Array<number>;
+
     private $q;
     private $scope;
 
@@ -29,10 +31,12 @@ export class CommentsController {
         this.$scope = $scope;
         this.dataService = $scope.model;
 
-        this.rating = 1;
+        this.RATINGS = [1, 2, 3, 4, 5];
+        this.rating = this.RATINGS[0];
     }
 
     public sendComment(): void {
+        console.log(typeof this.rating);
         this.dataService.addComment(
             this.commentsTo._id,
             <IComment>{
@@ -42,7 +46,7 @@ export class CommentsController {
             }).then((commentTo) => {
             this.name = '';
             this.text = '';
-            this.rating = 1;
+            this.rating = this.RATINGS[0];
             this.commentsTo = commentTo;
         });
     }

@@ -41,12 +41,10 @@ export function fakeServerRoutes($httpBackend, storageService: IStorageService):
             let comment: Comment = JSON.parse(data);
             let id = url.split('/')[3];
             let books: Array<Book> = storageService.get();
-
             comment._id = books[id].comments.length;
             books[id].comments.push(comment);
-            books[id].rating = parseInt(books[id].rating) + parseInt(comment.rating);
+            books[id].rating = comment.rating + books[id].rating;
             storageService.save(books);
-
             return [200, storageService.get(id)[0], {}];
         });
 
@@ -56,8 +54,7 @@ export function fakeServerRoutes($httpBackend, storageService: IStorageService):
             let id: number = url.split('/')[4];
             let books: Array<Book> = storageService.get();
             let book: Book = books[id];
-            books[id].orderCount = parseInt(book.orderCount) + 1;
-            console.log(books);
+            books[id].orderCount = 1 + book.orderCount;
             storageService.save(books);
             return [200, storageService.get(id)[0], {}];
         })
