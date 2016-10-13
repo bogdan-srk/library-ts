@@ -4,7 +4,6 @@ import {Book, IBook} from "../util/models/book.model";
 export interface IBooksController extends ng.IController {
     booksService: BooksService
     books: Array<Book>
-    arr: Array<any>
 }
 
 export class BooksController implements IBooksController {
@@ -25,18 +24,7 @@ export class BooksController implements IBooksController {
 
         this.booksService = booksService;
         this.$http = $http;
-        this.arr = ['asd', 'ased', 'sddd'];
         this.setBooks();
-    }
-
-    public test(): void {
-        this.$http.post('/api/books/1', {mydat: 'mydat'}).then((res) => {
-            console.log(res);
-        });
-    }
-
-    public addVal(): void {
-        this.arr.push('value ' + this.arr.length);
     }
 
     public addBook(): void {
@@ -46,7 +34,7 @@ export class BooksController implements IBooksController {
     }
 
     private setBooks() {
-        this.booksService.all().then((books) => {
+        this.booksService.all().then((books: Array<Book>) => {
             this.books = books;
         })
     }

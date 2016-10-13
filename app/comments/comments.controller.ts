@@ -47,6 +47,7 @@ export class CommentsController {
             this.text = '';
             this.rating = this.RATINGS[0];
             this.commentsTo.rating = commentTo.rating;
+            this.commentsTo.comments = commentTo.comments;
         });
     }
 

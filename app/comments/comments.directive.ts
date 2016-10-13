@@ -35,7 +35,7 @@ export function CommentsDirective(): ng.IDirective  {
             </label>
             <br>
             <button ng-click="vm.sendComment()" class="send-comment">Send</button>
-            <ul ng-repeat="comment in vm.commentsTo.comments">
+            <ul ng-repeat="comment in vm.commentsTo.comments | orderBy:'-_id'">
                 <li>
                     <comment comment-data="comment"></comment>
                 </li>

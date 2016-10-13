@@ -1,13 +1,20 @@
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require('webpack');
 
 var path = require('path');
 var loaders = require('./loaders');
 
 module.exports = {
+  // entry: {
+  //   bundle: path.resolve(__dirname, '../app/index.ts'),
+  //   styles: path.resolve(__dirname, '../app/index.scss')
+  // },
   entry: [
-    path.resolve(__dirname, '../app/index.ts')
+    path.resolve(__dirname, '../app/index.ts'),
+    path.resolve(__dirname, '../app/index.scss')
+
   ],
   output: {
     path: path.resolve(__dirname, "../dist"),
@@ -38,7 +45,12 @@ module.exports = {
       ui: false,
       online: false,
       notify: false
-    })
+    }),
+    new ExtractTextPlugin(
+      'styles.css', {
+        allChunks: true
+      }
+    )
   ],
   module:{
     loaders: loaders

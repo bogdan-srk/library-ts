@@ -4,7 +4,7 @@ import IPromise = angular.IPromise;
 
 export interface IDataService {
     all(): IPromise<any>
-    getOne(id: number)
+    getOne(id: number): IPromise<any>
 }
 
 export interface IBooksService extends IDataService {
@@ -69,7 +69,7 @@ export class BooksService implements IBooksService {
             });
     }
 
-    public getOne(bookId: number) {
+    public getOne(bookId: number): ng.IPromise<any> {
         return this.$http.get('/api/books/' + bookId).then((res) => {
             return res.data.book;
         });
