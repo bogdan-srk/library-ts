@@ -36,7 +36,6 @@ export class CommentsController {
     }
 
     public sendComment(): void {
-        console.log(typeof this.rating);
         this.dataService.addComment(
             this.commentsTo._id,
             <IComment>{
@@ -47,7 +46,7 @@ export class CommentsController {
             this.name = '';
             this.text = '';
             this.rating = this.RATINGS[0];
-            this.commentsTo = commentTo;
+            this.commentsTo.rating = commentTo.rating;
         });
     }
 

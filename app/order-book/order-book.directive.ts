@@ -13,11 +13,11 @@ export function OrderBookDirective(): ng.IDirective {
         <label>
             <input ng-model="order.address" type="text">
         </label>
-        <button ng-click="order.sendRequest()">Order Book</button>
+        <button ng-click="order.orderBook()">Order Book</button>
         `,
         link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: OrderBookController) => {
-            scope.$watch('book', (newVal) => {
-                ctrl.book = <Book>newVal;
+            scope.$watch('book', (newVal: Book) => {
+                ctrl.book = newVal;
             });
         }
     }

@@ -1,4 +1,4 @@
-import {Book} from "../../models/book.model";
+import {Book, IBook} from "../../models/book.model";
 import {Comment, IComment} from "../../models/comment.model";
 import IPromise = angular.IPromise;
 
@@ -23,25 +23,29 @@ export class BooksService implements IBooksService {
         this.books = [];
         this.$http = $http;
 
-    //     if (true) {const booksCount: number = 10;
-    //     const commentsCount: number = 10;
-    //     for (let i = 0; i < booksCount; i++) {
-    //         this.books.push(
-    //             new Book(this.books.length, `Book title ${i}`,
-    //                 'Name of author',
-    //                 Math.floor((Math.random() * 10) + 1))
-    //         );
-    //         for (let j = 0; j < commentsCount; j++) {
-    //             this.books[i].comments.push(
-    //                 new Comment(this.books[i].comments.length, <IComment>{
-    //                     name: `Name ${this.books[i].comments.length}`,
-    //                     text: `Text text`,
-    //                     rating: Math.floor((Math.random() * 10) + 1)
-    //                 })
-    //             )
-    //         }
-    //     }
-    //     localStorage.setItem('library', JSON.stringify(this.books))}
+        // if (true) {const booksCount: number = 10;
+        // const commentsCount: number = 10;
+        // for (let i = 0; i < booksCount; i++) {
+        //     this.books.push(
+        //         new Book(this.books.length, <IBook>{
+        //             title: `Book title ${i}`,
+        //             author:'Name of author',
+        //             rating: Math.floor((Math.random() * 5) + 1),
+        //             pageCount: Math.floor((Math.random() * 500) + 1),
+        //             comments: []
+        //         })
+        //     );
+        //     for (let j = 0; j < commentsCount; j++) {
+        //         this.books[i].comments.push(
+        //             new Comment(this.books[i].comments.length, <IComment>{
+        //                 name: `Name ${this.books[i].comments.length}`,
+        //                 text: `Text text`,
+        //                 rating: Math.floor((Math.random() * 10) + 1)
+        //             })
+        //         )
+        //     }
+        // }
+        // localStorage.setItem('library', JSON.stringify(this.books))}
     }
 
     public all(): IPromise<any> {
@@ -52,7 +56,7 @@ export class BooksService implements IBooksService {
 
     public addBook(title: string, author: string, pageCount: number): ng.IPromise<void> {
         return this.$http.post('/api/books', {
-            book: new Book(0, title, author, pageCount)
+            book: new Book(0, <IBook>{title, author, pageCount, comments: []})
         }).then((res) => {
             return res;
         });
@@ -73,7 +77,7 @@ export class BooksService implements IBooksService {
 
     public orderBook(bookId: number, address: string){
         return this.$http.post('/api/order/book/' + bookId, address).then((res) => {
-            console.log(res);
+            return <Book>res.data;
         })
     }
 }

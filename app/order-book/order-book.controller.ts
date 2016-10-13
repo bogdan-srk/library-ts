@@ -17,8 +17,11 @@ export class OrderBookController {
         console.log($scope);
     }
 
-    public sendRequest(): void {
+    public orderBook(): void {
 
-        this.booksService.orderBook(this.book._id, this.address)
+        this.booksService.orderBook(this.book._id, this.address).then((book: Book) => {
+            this.book.orderCount = book.orderCount;
+            this.address = '';
+        })
     }
 }

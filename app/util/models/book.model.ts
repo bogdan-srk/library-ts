@@ -7,8 +7,9 @@ export interface IBook {
     author: string
     pageCount: number
     rating?: number
-    orderCount: number
-    comments?: Array<Comment>
+    orderCount?: number
+    isAvailable?: boolean;
+    comments: Array<Comment>
 }
 
 export class Book implements IBook, IDataModel, ICommentable {
@@ -22,14 +23,23 @@ export class Book implements IBook, IDataModel, ICommentable {
     isAvailable: boolean;
     comments: Array<Comment>;
 
-    constructor(_id: number, title: string, author: string, pageCount: number) {
+    constructor(_id: number, book: IBook) {
         this._id = _id;
-        this.title = title;
-        this.author = author;
-        this.pageCount = pageCount;
-        this.rating = 0;
-        this.orderCount = 0;
+        this.title = book.title;
+        this.author = book.author;
+        this.pageCount = book.pageCount;
+        this.rating = book.rating || 0;
+        this.orderCount = book.orderCount || 0;
         this.isAvailable = true;
-        this.comments = [];
+        this.comments = book.comments;
+    }
+
+    public getAverageRating(): number {
+        let rating: number = this.comments.reduce(
+                (sum, comment) => {
+                    return sum + comment.rating;
+                }, 0) / this.comments.length;
+
+        return Math.round(rating * 10) / 10;
     }
 }
