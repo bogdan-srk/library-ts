@@ -1,2 +1,93 @@
 @import "book/page-book";
+@import "books/page-books";
+@import "books/book/book";
+@import "comments/comment/comment";
+@import "comments/comments";
 
+body {
+  background: #EE7469;
+  font-family: Arial, sans-serif;
+  color: #383732;
+}
+
+header {
+  h1 {
+    font-size: 5em;
+    font-weight: lighter;
+    text-align: center;
+    margin: 35px;
+    color: #FFF0D6;
+  }
+}
+
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  color: #AAAAAA;
+  cursor: text;
+  display: block; /* For Firefox */
+}
+
+div[contenteditable=true] {
+  border: #AAA;
+  width: 290px;
+  padding: 5px;
+}
+
+.center {
+  padding: 20px 0;
+  width: 65%;
+  margin: 0 auto;
+  background: #FFF0D6;
+}
+
+.input-form {
+  position: relative;
+  padding: 10px;
+  width: 90%;
+  margin: 0 auto;
+
+  .form-input-label{
+    font-family: Arial, sans-serif;
+    font-size: 1.8em;
+    color: #383732;
+  }
+
+  .form-element {
+    font-size: 1.8em;
+    position: relative;
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+    color: #383732;
+  }
+
+  .form-text {
+    @extend .form-element;
+    overflow: auto;
+    background: #fff;
+    max-height: 300px;
+    min-height: 200px;
+    border: darkgrey 1px solid;
+  }
+
+  button {
+    background: #836D6F;
+    border: none;
+    border-bottom: solid #383732 5px;
+    user-select: none;
+  }
+
+  button:hover{
+    cursor: pointer;
+  }
+
+  button:active {
+    background: #836D6F;
+    border: none;
+    border-top: solid #FFF0D6 5px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+}

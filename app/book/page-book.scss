@@ -1,2 +1,16 @@
-body{
+.page-book {
+
+  .link-back{
+    display: block;
+    text-decoration: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    margin: 0 20px 20px;
+    border-bottom: 2px solid #EE7469;
+    color: #383732;
+  }
+
+  .link-back:hover {
+    color: #836D6F;
+  }
 }

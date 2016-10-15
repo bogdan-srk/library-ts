@@ -8,9 +8,9 @@ export function CommentDirective(): ng.IDirective  {
         controllerAs: 'vm',
         controller: CommentController,
         template: `
-            <span>{{vm.name}}</span>
-            <p>{{vm.text}}</p>
-            <span>Rating: {{vm.rating}}</span>
+            <span class="name">Name: {{vm.name}}</span>
+            <p class="comment-text">{{vm.text}}</p>
+            <span class="rating">Rating: {{vm.rating}}</span>
         `,
         link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: ICommentController) => {
         }

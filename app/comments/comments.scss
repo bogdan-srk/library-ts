@@ -1,0 +1,14 @@
+.comments {
+  ul {
+    list-style-type: none;
+    margin-left: 25px;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    border-left: solid transparent 25px;
+
+    li {
+      margin-bottom: 30px;
+    }
+  }
+}

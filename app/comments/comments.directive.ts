@@ -11,33 +11,34 @@ export function CommentsDirective(): ng.IDirective  {
         controllerAs: 'vm',
         controller: CommentsController,
         template: `
-            <input type="text" ng-model="vm.name">
-            <div ng-model="vm.text" style="width: 200px; min-height: 100px;" contenteditable="true"></div>
-            <label>
-                <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[0]"/>
-                {{vm.RATINGS[0]}}
-            </label>
-            <label>
-                <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[1]"/>
-                {{vm.RATINGS[1]}}
-            </label>
-            <label>
-                <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[2]"/>
-                {{vm.RATINGS[2]}}
-            </label>
-            <label>
-                <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[3]"/>
-                {{vm.RATINGS[3]}}
-            </label>
-            <label>
-                <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[4]"/>
-                {{vm.RATINGS[4]}}
-            </label>
-            <br>
-            <button ng-click="vm.sendComment()" class="send-comment">Send</button>
-            <ul ng-repeat="comment in vm.commentsTo.comments | orderBy:'-_id'">
-                <li>
-                    <comment comment-data="comment"></comment>
+            <div class="input-form">
+                <label>
+                    <input class="form-element" type="text" ng-model="vm.name" placeholder="Enter name...">
+                </label>
+                <div class="form-text" ng-model="vm.text" contenteditable="true" placeholder="Comment text..."></div>
+                <label class="form-input-label">
+                    Rate Book:  
+                    <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[0]"/>
+                    {{vm.RATINGS[0]}}
+                
+                    <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[1]"/>
+                    {{vm.RATINGS[1]}}
+                
+                    <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[2]"/>
+                    {{vm.RATINGS[2]}}
+               
+                    <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[3]"/>
+                    {{vm.RATINGS[3]}}
+                
+                    <input type="radio" ng-model="vm.rating" ng-value="vm.RATINGS[4]"/>
+                    {{vm.RATINGS[4]}}
+                </label>
+                <br>        
+                <button class="form-element" ng-click="vm.sendComment()" class="send-comment">Send</button>
+            </div>
+            <ul>
+                <li ng-repeat="comment in vm.commentsTo.comments | orderBy:'-_id'">
+                    <comment comment-data="comment" class="comment"></comment>
                 </li>
             </ul>
         `,

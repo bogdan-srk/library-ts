@@ -10,10 +10,12 @@ export function OrderBookDirective(): ng.IDirective {
         controllerAs: 'order',
         controller: OrderBookController,
         template: `
-        <label>
-            <input ng-model="order.address" type="text">
-        </label>
-        <button ng-click="order.orderBook()">Order Book</button>
+        <div class="input-form">
+            <label>
+                <input class="form-element" ng-model="order.address" type="text" placeholder="Enter Address...">
+            </label>
+            <button class="form-element" ng-click="order.orderBook()">Order Book</button>
+        </div>        
         `,
         link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes, ctrl: OrderBookController) => {
             scope.$watch('book', (newVal: Book) => {
