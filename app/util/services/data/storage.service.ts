@@ -11,10 +11,9 @@ export class StorageService implements IStorageService {
 
     static $inject = ['$q'];
 
-    private $q;
+    constructor(private $q) {
 
-    constructor($q) {
-        this.$q = $q;
+        console.log(this.$q);
 
         if (!localStorage.getItem('library')){
             localStorage.setItem('library', JSON.stringify([]))

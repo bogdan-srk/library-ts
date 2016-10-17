@@ -7,12 +7,20 @@ export interface IDataService {
     getOne(id: number): IPromise<any>
 }
 
-export interface IBooksService extends IDataService {
+export interface IDataServiceCommentable extends IDataService{
+    addComment(targetId: number, comment: IComment): ng.IPromise<any>
+}
+
+export interface IDataServiceOrderable extends IDataService {
+    orderItem(itemId: number, address: string): ng.IPromise<any>
+}
+
+export interface IBooksService extends IDataServiceCommentable {
     all(): IPromise<any>
     getOne(bookId: number): ng.IPromise<void>
-    addBook(title: string, author: string, pageCount: number): ng.IPromise<void>
-    addComment(bookId: number, comment: IComment): ng.IPromise<void>
-    orderBook(bookId: number, address: string): ng.IPromise<void>
+    addBook(title: string, author: string, pageCount: number): ng.IPromise<any>
+    addComment(targetId: number, comment: IComment): ng.IPromise<any>
+    orderItem(itemId: number, address: string): ng.IPromise<any>
 }
 
 export class BooksService implements IBooksService {
@@ -62,8 +70,8 @@ export class BooksService implements IBooksService {
         });
     }
 
-    public addComment(bookId: number, comment: IComment) {
-        return this.$http.post('/api/books/' + bookId, new Comment(bookId, comment))
+    public addComment(targetId: number, comment: IComment) {
+        return this.$http.post('/api/books/' + targetId, new Comment(targetId, comment))
             .then((res) => {
                 return res.data;
             });
@@ -75,8 +83,8 @@ export class BooksService implements IBooksService {
         });
     }
 
-    public orderBook(bookId: number, address: string){
-        return this.$http.post('/api/order/book/' + bookId, address).then((res) => {
+    public orderItem(itemId: number, address: string){
+        return this.$http.post('/api/order/book/' + itemId, address).then((res) => {
             return <Book>res.data;
         })
     }

@@ -1,5 +1,5 @@
-import {IDataService, BooksService} from "../util/services/data/books.service";
-import {ICommentable} from "../util/models/dataModel.interface";
+import {IDataService, BooksService, IDataServiceCommentable} from "../util/services/data/books.service";
+import {ICommentable, IDataModelCommentable} from "../util/models/dataModel.interface";
 import {IComment} from "../util/models/comment.model";
 import {IBook, Book} from "../util/models/book.model";
 import IQService = angular.IQService;
@@ -14,8 +14,8 @@ export class CommentsController {
 
     static $inject = ['$scope', '$q'];
 
-    public commentsTo: Book;
-    public dataService: BooksService;
+    public commentsTo: IDataModelCommentable;
+    public dataService: IDataServiceCommentable;
 
     public name: string;
     public text: string;

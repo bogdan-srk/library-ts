@@ -16,7 +16,7 @@ export function PageBookDirective(): ng.IDirective {
                 <li class="book-property">Ordered: {{vm.book.orderCount}}</li>
                 <li class="book-property">Available: {{vm.book.isAvailable}}</li>
             </ul>
-            <order-book ng-if="vm.book.isAvailable" book="vm.book"></order-book>
+            <order-item ng-if="vm.book.isAvailable" item="vm.book" model="vm.booksService"></order-item>
         </div>
         <comments comments-to="vm.book" model="vm.booksService" class="comments"></comments>
         `,

@@ -1,4 +1,4 @@
-import {BooksController, IBooksController} from "./books.controller";
+import {BooksController, IBooksController} from "./page-books.controller";
 import {Book} from "../util/models/book.model";
 export function BooksDirective(): ng.IDirective {
     return {

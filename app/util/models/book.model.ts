@@ -1,7 +1,7 @@
-import {IDataModel, ICommentable} from "./dataModel.interface";
+import {IDataModelCommentable} from "./dataModel.interface";
 import {Comment, IComment} from "./comment.model"
 
-export interface IBook {
+export interface IBook{
 
     title: string
     author: string
@@ -12,7 +12,7 @@ export interface IBook {
     comments: Array<Comment>
 }
 
-export class Book implements IBook, IDataModel, ICommentable {
+export class Book implements IBook, IDataModelCommentable {
 
     _id: number;
     title: string;

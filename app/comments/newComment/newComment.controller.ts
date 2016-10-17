@@ -1,6 +1,10 @@
-import {IDataService, IBooksService, BooksService} from "../../util/services/data/books.service";
+import {
+    IDataService, IBooksService, BooksService,
+    IDataServiceCommentable
+} from "../../util/services/data/books.service";
 import {Book} from "../../util/models/book.model";
 import {IComment} from "../../util/models/comment.model";
+import {IDataModelCommentable} from "../../util/models/dataModel.interface";
 
 export interface INewCommentController {
     name: string
@@ -14,8 +18,8 @@ export class NewCommentController implements INewCommentController {
     public comment: string;
     public rating: number;
 
-    private target: Book;
-    private dataService: BooksService;
+    private target: IDataModelCommentable;
+    private dataService: IDataServiceCommentable;
 
     static $inject = ['$scope'];
 
